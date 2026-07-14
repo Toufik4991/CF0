@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { GameShell } from "@/components/game/GameShell";
 import { getTheme } from "@/lib/themes";
-import { MOCK_HUNT, MOCK_LEADERBOARD, MOCK_TEAM } from "@/lib/mock-data";
+import { MOCK_HUNT, MOCK_LEADERBOARD, MOCK_TEAM, MOCK_TEAMS } from "@/lib/mock-data";
 
 export default async function PlayPage({
   params,
@@ -19,7 +19,7 @@ export default async function PlayPage({
 
   return (
     <ThemeProvider theme={theme}>
-      <GameShell hunt={MOCK_HUNT} initialTeam={MOCK_TEAM} leaderboard={MOCK_LEADERBOARD} />
+      <GameShell hunt={MOCK_HUNT} teams={MOCK_TEAMS} leaderboard={MOCK_LEADERBOARD} />
     </ThemeProvider>
   );
 }

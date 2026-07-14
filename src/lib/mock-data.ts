@@ -69,6 +69,30 @@ export const MOCK_TEAM: TeamProgress = {
   badges: [],
 };
 
+export const MOCK_TEAMS: TeamProgress[] = [
+  MOCK_TEAM,
+  {
+    teamId: "team-2",
+    teamName: "Équipe 2",
+    teamToken: "demo-team",
+    huntId: "hunt-1",
+    currentStageIndex: 2,
+    startedAt: new Date(Date.now() - 20 * 60 * 1000).toISOString(),
+    pointsTotal: 240,
+    badges: [],
+  },
+  {
+    teamId: "team-3",
+    teamName: "Équipe 3",
+    teamToken: "demo-team",
+    huntId: "hunt-1",
+    currentStageIndex: 4,
+    startedAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
+    pointsTotal: 410,
+    badges: MOCK_BADGES,
+  },
+];
+
 export const MOCK_LEADERBOARD: LeaderboardEntry[] = [
   { teamId: "team-1", teamName: "Équipe 1", currentStageIndex: 0, totalStages: 4, pointsTotal: 0, finished: false },
   { teamId: "team-2", teamName: "Équipe 2", currentStageIndex: 2, totalStages: 4, pointsTotal: 240, finished: false },

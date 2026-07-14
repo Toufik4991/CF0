@@ -9,11 +9,11 @@ import { StageFlow } from "./StageFlow";
 
 export function GameShell({
   hunt,
-  initialTeam,
+  teams,
   leaderboard,
 }: {
   hunt: Hunt;
-  initialTeam: TeamProgress;
+  teams: TeamProgress[];
   leaderboard: LeaderboardEntry[];
 }) {
   const [player, setPlayer] = useState<PlayerProfile | null | undefined>(undefined);
@@ -26,11 +26,13 @@ export function GameShell({
     return null;
   }
 
-  if (!player) {
+  const team = player ? teams.find((t) => t.teamId === player.teamId) : undefined;
+
+  if (!player || !team) {
     return (
       <OnboardingFlow
         hunt={hunt}
-        team={initialTeam}
+        teams={teams}
         onComplete={(p) => {
           savePlayerProfile(p);
           setPlayer(p);
@@ -42,7 +44,7 @@ export function GameShell({
   return (
     <StageFlow
       hunt={hunt}
-      initialTeam={initialTeam}
+      initialTeam={team}
       leaderboard={leaderboard}
       player={player}
       onEditProfile={() => {
