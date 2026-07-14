@@ -1,13 +1,19 @@
 import type { Hunt, TeamProgress } from "@/types/hunt";
+import type { PlayerProfile } from "@/types/player";
+import { GameMenu } from "./GameMenu";
 
 export function TeamHomeHeader({
   hunt,
   team,
+  player,
   onOpenLeaderboard,
+  onEditProfile,
 }: {
   hunt: Hunt;
   team: TeamProgress;
+  player: PlayerProfile;
   onOpenLeaderboard: () => void;
+  onEditProfile: () => void;
 }) {
   const total = hunt.stages.length;
   const current = Math.min(team.currentStageIndex + 1, total);
@@ -22,12 +28,7 @@ export function TeamHomeHeader({
         <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1 text-sm font-medium">
           Étape {current}/{total}
         </span>
-        <button
-          onClick={onOpenLeaderboard}
-          className="text-sm font-medium text-[var(--color-accent)] underline-offset-4 hover:underline"
-        >
-          Classement
-        </button>
+        <GameMenu player={player} onOpenLeaderboard={onOpenLeaderboard} onEditProfile={onEditProfile} />
       </div>
     </header>
   );

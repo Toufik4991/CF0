@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Hunt, LeaderboardEntry, TeamProgress } from "@/types/hunt";
+import type { PlayerProfile } from "@/types/player";
 import { TeamHomeHeader } from "./TeamHomeHeader";
 import { GlobalTimer, formatDuration } from "./GlobalTimer";
 import { MiniGamePlaceholder } from "./MiniGamePlaceholder";
@@ -17,10 +18,14 @@ export function StageFlow({
   hunt,
   initialTeam,
   leaderboard,
+  player,
+  onEditProfile,
 }: {
   hunt: Hunt;
   initialTeam: TeamProgress;
   leaderboard: LeaderboardEntry[];
+  player: PlayerProfile;
+  onEditProfile: () => void;
 }) {
   const [team, setTeam] = useState(initialTeam);
   const [phase, setPhase] = useState<Phase>(
@@ -49,7 +54,13 @@ export function StageFlow({
   return (
     <div className="flex min-h-full flex-1 flex-col">
       {phase !== "victory" && (
-        <TeamHomeHeader hunt={hunt} team={team} onOpenLeaderboard={() => setShowLeaderboard(true)} />
+        <TeamHomeHeader
+          hunt={hunt}
+          team={team}
+          player={player}
+          onOpenLeaderboard={() => setShowLeaderboard(true)}
+          onEditProfile={onEditProfile}
+        />
       )}
 
       {phase === "minigame" && (

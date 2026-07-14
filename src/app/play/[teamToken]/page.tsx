@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { StageFlow } from "@/components/game/StageFlow";
+import { GameShell } from "@/components/game/GameShell";
 import { getTheme } from "@/lib/themes";
 import { MOCK_HUNT, MOCK_LEADERBOARD, MOCK_TEAM } from "@/lib/mock-data";
 
@@ -19,7 +19,7 @@ export default async function PlayPage({
 
   return (
     <ThemeProvider theme={theme}>
-      <StageFlow hunt={MOCK_HUNT} initialTeam={MOCK_TEAM} leaderboard={MOCK_LEADERBOARD} />
+      <GameShell hunt={MOCK_HUNT} initialTeam={MOCK_TEAM} leaderboard={MOCK_LEADERBOARD} />
     </ThemeProvider>
   );
 }
