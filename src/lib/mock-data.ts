@@ -3,7 +3,7 @@ import type { Badge, Hunt, LeaderboardEntry, TeamProgress } from "@/types/hunt";
 export const MOCK_HUNT: Hunt = {
   id: "hunt-1",
   name: "CF0",
-  themeId: "bois-minimaliste",
+  themeId: "jungle",
   pointsBasePerStage: 100,
   stages: [
     {

@@ -5,9 +5,10 @@ import type { Hunt, TeamProgress } from "@/types/hunt";
 import type { PlayerProfile } from "@/types/player";
 import { PseudoScreen } from "./PseudoScreen";
 import { SelfieScreen } from "./SelfieScreen";
+import { RouteSelectScreen } from "./RouteSelectScreen";
 import { RouteIntroScreen } from "./RouteIntroScreen";
 
-type Step = "pseudo" | "selfie" | "intro";
+type Step = "pseudo" | "selfie" | "route" | "intro";
 
 export function OnboardingFlow({
   hunt,
@@ -38,11 +39,15 @@ export function OnboardingFlow({
       <SelfieScreen
         onSubmit={(dataUrl) => {
           setSelfieDataUrl(dataUrl);
-          setStep("intro");
+          setStep("route");
         }}
-        onSkip={() => setStep("intro")}
+        onSkip={() => setStep("route")}
       />
     );
+  }
+
+  if (step === "route") {
+    return <RouteSelectScreen onSelect={() => setStep("intro")} />;
   }
 
   const player: PlayerProfile = { pseudo, selfieDataUrl };

@@ -11,8 +11,9 @@ import { LeaderboardScreen } from "@/components/game/LeaderboardScreen";
 import { VictoryScreen } from "@/components/game/VictoryScreen";
 import { PseudoScreen } from "@/components/onboarding/PseudoScreen";
 import { SelfieScreen } from "@/components/onboarding/SelfieScreen";
+import { RouteSelectScreen } from "@/components/onboarding/RouteSelectScreen";
 import { RouteIntroScreen } from "@/components/onboarding/RouteIntroScreen";
-import { THEMES, DEFAULT_THEME_ID } from "@/lib/themes";
+import { THEMES } from "@/lib/themes";
 import { MOCK_HUNT, MOCK_LEADERBOARD, MOCK_TEAM, MOCK_BADGES } from "@/lib/mock-data";
 import type { ThemeId } from "@/types/theme";
 import type { PlayerProfile } from "@/types/player";
@@ -21,7 +22,7 @@ const stage = MOCK_HUNT.stages[0];
 const MOCK_PLAYER: PlayerProfile = { pseudo: "Jules", selfieDataUrl: null };
 
 export default function PreviewPage() {
-  const [themeId, setThemeId] = useState<ThemeId>(DEFAULT_THEME_ID);
+  const [themeId, setThemeId] = useState<ThemeId>(MOCK_HUNT.themeId);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const theme = THEMES[themeId];
 
@@ -64,6 +65,12 @@ export default function PreviewPage() {
         <PreviewCard title="Onboarding — Personnage (selfie)">
           <ThemeProvider theme={theme}>
             <SelfieScreen onSubmit={() => {}} onSkip={() => {}} />
+          </ThemeProvider>
+        </PreviewCard>
+
+        <PreviewCard title="Onboarding — Choix du chemin">
+          <ThemeProvider theme={theme}>
+            <RouteSelectScreen onSelect={() => {}} />
           </ThemeProvider>
         </PreviewCard>
 

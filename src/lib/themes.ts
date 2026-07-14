@@ -72,6 +72,29 @@ export const THEMES: Record<ThemeId, ThemePreset> = {
     radius: "1rem",
     textureOpacity: 0.03,
   },
+  jungle: {
+    id: "jungle",
+    label: "Jungle / Enfance",
+    colors: {
+      background: "#EAF4E1",
+      surface: "#D9ECC9",
+      foreground: "#1F3A2E",
+      muted: "#5C7A65",
+      primary: "#3F9142",
+      primaryForeground: "#FBFFF4",
+      accent: "#FF8A5B",
+      glow: "#FFD166",
+      border: "#BFE0AE",
+      danger: "#D6553D",
+      success: "#2F8F5A",
+    },
+    fonts: {
+      sans: "var(--font-sans)",
+      display: "var(--font-display-alt)",
+    },
+    radius: "1.5rem",
+    textureOpacity: 0.06,
+  },
 };
 
 export function getTheme(id: ThemeId): ThemePreset {

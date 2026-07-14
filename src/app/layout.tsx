@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Work_Sans, Fraunces } from "next/font/google";
+import { Work_Sans, Fraunces, Fredoka } from "next/font/google";
 import "./globals.css";
 
 const workSans = Work_Sans({
@@ -11,6 +11,11 @@ const fraunces = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
   style: ["normal", "italic"],
+});
+
+const fredoka = Fredoka({
+  variable: "--font-display-alt",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${workSans.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${workSans.variable} ${fraunces.variable} ${fredoka.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

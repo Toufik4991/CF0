@@ -1,4 +1,4 @@
-export type ThemeId = "bois-minimaliste" | "mystere" | "festif";
+export type ThemeId = "bois-minimaliste" | "mystere" | "festif" | "jungle";
 
 export interface ThemePreset {
   id: ThemeId;
