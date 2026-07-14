@@ -7,10 +7,12 @@ export function GameMenu({
   player,
   onOpenLeaderboard,
   onEditProfile,
+  onOpenMasterCode,
 }: {
   player: PlayerProfile;
   onOpenLeaderboard: () => void;
   onEditProfile: () => void;
+  onOpenMasterCode: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -64,6 +66,15 @@ export function GameMenu({
               className="block w-full rounded-full px-3 py-2.5 text-left text-sm font-semibold hover:bg-[var(--color-surface)]"
             >
               🙋 Modifier mon profil
+            </button>
+            <button
+              onClick={() => {
+                setOpen(false);
+                onOpenMasterCode();
+              }}
+              className="block w-full rounded-full px-3 py-2.5 text-left text-sm font-semibold text-[var(--color-muted)] hover:bg-[var(--color-surface)]"
+            >
+              🔑 Code maître
             </button>
           </div>
         </>

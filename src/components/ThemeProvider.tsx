@@ -39,7 +39,10 @@ export function ThemeProvider({
       className="relative flex min-h-full flex-1 flex-col overflow-hidden bg-[var(--color-background)] text-[var(--color-foreground)]"
     >
       {theme.decoration === "jungle" ? (
-        <JungleDecoration />
+        <>
+          <div aria-hidden className="psychedelic-bg pointer-events-none absolute inset-0 z-0" />
+          <JungleDecoration />
+        </>
       ) : (
         <div
           aria-hidden

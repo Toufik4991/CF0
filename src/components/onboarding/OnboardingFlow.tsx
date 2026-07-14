@@ -18,7 +18,7 @@ export function OnboardingFlow({
 }: {
   hunt: Hunt;
   teams: TeamProgress[];
-  onComplete: (player: PlayerProfile) => void;
+  onComplete: (player: PlayerProfile, team: TeamProgress, reset: boolean) => void;
 }) {
   const [step, setStep] = useState<Step>("pseudo");
   const [pseudo, setPseudo] = useState("");
@@ -70,7 +70,7 @@ export function OnboardingFlow({
       hunt={hunt}
       team={team}
       player={player}
-      onStart={() => onComplete(player)}
+      onStart={(reset) => onComplete(player, team, reset)}
     />
   );
 }

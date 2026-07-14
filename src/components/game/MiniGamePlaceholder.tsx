@@ -5,12 +5,12 @@ import type { Stage } from "@/types/hunt";
 import { Button } from "@/components/ui/Button";
 
 const MINI_GAME_ICONS: Record<Stage["miniGameType"], string> = {
-  quiz: "🦜",
-  memory: "🐒",
+  quiz: "🌺",
+  memory: "🍄",
   puzzle: "🍃",
-  cipher: "🦋",
-  reflex: "🐸",
-  association: "🌺",
+  cipher: "🌿",
+  reflex: "🌵",
+  association: "🪴",
 };
 
 export function MiniGamePlaceholder({

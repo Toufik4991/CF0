@@ -8,12 +8,14 @@ export function TeamHomeHeader({
   player,
   onOpenLeaderboard,
   onEditProfile,
+  onOpenMasterCode,
 }: {
   hunt: Hunt;
   team: TeamProgress;
   player: PlayerProfile;
   onOpenLeaderboard: () => void;
   onEditProfile: () => void;
+  onOpenMasterCode: () => void;
 }) {
   const total = hunt.stages.length;
   const current = Math.min(team.currentStageIndex + 1, total);
@@ -33,7 +35,12 @@ export function TeamHomeHeader({
         <span className="rounded-full bg-[var(--color-secondary)] px-4 py-1.5 text-sm font-bold text-[var(--color-foreground)] shadow-sm">
           Étape {current}/{total}
         </span>
-        <GameMenu player={player} onOpenLeaderboard={onOpenLeaderboard} onEditProfile={onEditProfile} />
+        <GameMenu
+          player={player}
+          onOpenLeaderboard={onOpenLeaderboard}
+          onEditProfile={onEditProfile}
+          onOpenMasterCode={onOpenMasterCode}
+        />
       </div>
     </header>
   );

@@ -57,7 +57,7 @@ export function SelfieScreen({
 
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <span className="text-5xl">🐒</span>
+      <span className="text-5xl">📸</span>
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
           Ton personnage

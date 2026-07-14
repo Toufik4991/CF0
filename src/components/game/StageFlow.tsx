@@ -11,6 +11,7 @@ import { ClueScreen } from "./ClueScreen";
 import { ZoneScreen } from "./ZoneScreen";
 import { LeaderboardScreen } from "./LeaderboardScreen";
 import { VictoryScreen } from "./VictoryScreen";
+import { MasterCodeModal } from "./MasterCodeModal";
 
 type Phase = "minigame" | "code" | "clue" | "zone" | "victory";
 
@@ -32,6 +33,7 @@ export function StageFlow({
     initialTeam.currentStageIndex >= hunt.stages.length ? "victory" : "minigame"
   );
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showMasterCode, setShowMasterCode] = useState(false);
 
   const stage = hunt.stages[team.currentStageIndex];
   const isLastStage = team.currentStageIndex === hunt.stages.length - 1;
@@ -51,6 +53,15 @@ export function StageFlow({
     setPhase(isLastStage ? "victory" : "minigame");
   }
 
+  function handleResetPoints() {
+    setTeam((t) => ({ ...t, pointsTotal: 0 }));
+  }
+
+  function handleSkipAllStages() {
+    setTeam((t) => ({ ...t, currentStageIndex: hunt.stages.length }));
+    setPhase("victory");
+  }
+
   return (
     <div className="flex min-h-full flex-1 flex-col">
       {phase !== "victory" && (
@@ -60,6 +71,7 @@ export function StageFlow({
           player={player}
           onOpenLeaderboard={() => setShowLeaderboard(true)}
           onEditProfile={onEditProfile}
+          onOpenMasterCode={() => setShowMasterCode(true)}
         />
       )}
 
@@ -80,6 +92,14 @@ export function StageFlow({
           entries={leaderboard}
           currentTeamId={team.teamId}
           onClose={() => setShowLeaderboard(false)}
+        />
+      )}
+
+      {showMasterCode && (
+        <MasterCodeModal
+          onClose={() => setShowMasterCode(false)}
+          onResetPoints={handleResetPoints}
+          onSkipAllStages={handleSkipAllStages}
         />
       )}
     </div>

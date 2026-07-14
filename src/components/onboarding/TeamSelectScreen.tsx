@@ -2,7 +2,7 @@
 
 import type { TeamProgress } from "@/types/hunt";
 
-const TEAM_ICONS = ["🐒", "🦜", "🐸", "🦋"];
+const TEAM_ICONS = ["🌴", "🌺", "🍄", "🌿"];
 const TEAM_COLORS = ["var(--color-primary)", "var(--color-secondary)", "var(--color-tertiary)"];
 
 export function TeamSelectScreen({
@@ -14,7 +14,7 @@ export function TeamSelectScreen({
 }) {
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <span className="text-5xl">🦋</span>
+      <span className="text-5xl">🌿</span>
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
           Rejoins les tiens

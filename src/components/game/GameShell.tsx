@@ -17,6 +17,7 @@ export function GameShell({
   leaderboard: LeaderboardEntry[];
 }) {
   const [player, setPlayer] = useState<PlayerProfile | null | undefined>(undefined);
+  const [activeTeam, setActiveTeam] = useState<TeamProgress | null>(null);
 
   useEffect(() => {
     setPlayer(loadPlayerProfile());
@@ -26,16 +27,27 @@ export function GameShell({
     return null;
   }
 
-  const team = player ? teams.find((t) => t.teamId === player.teamId) : undefined;
+  const matchedTeam = player ? teams.find((t) => t.teamId === player.teamId) : undefined;
 
-  if (!player || !team) {
+  if (!player || !matchedTeam) {
     return (
       <OnboardingFlow
         hunt={hunt}
         teams={teams}
-        onComplete={(p) => {
+        onComplete={(p, team, reset) => {
           savePlayerProfile(p);
           setPlayer(p);
+          setActiveTeam(
+            reset
+              ? {
+                  ...team,
+                  currentStageIndex: 0,
+                  pointsTotal: 0,
+                  badges: [],
+                  startedAt: new Date().toISOString(),
+                }
+              : team
+          );
         }}
       />
     );
@@ -44,12 +56,13 @@ export function GameShell({
   return (
     <StageFlow
       hunt={hunt}
-      initialTeam={team}
+      initialTeam={activeTeam ?? matchedTeam}
       leaderboard={leaderboard}
       player={player}
       onEditProfile={() => {
         clearPlayerProfile();
         setPlayer(null);
+        setActiveTeam(null);
       }}
     />
   );

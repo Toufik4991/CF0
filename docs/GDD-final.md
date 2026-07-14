@@ -27,8 +27,8 @@ Ce document est la référence unique du projet. Toute demande de changement doi
 - Palette vive : vert feuillage `#219150`, fond citron vert clair `#F3FBD8`, jaune soleil (secondaire) `#FFC93C`, rose/baie (tertiaire) `#FF6F91`, accent mangue `#FF7A45`, glow doré `#FFD23F`, texte anthracite-vert `#1A3A22`
 - Coins très arrondis (radius carte 2rem, boutons en pilule via `buttonRadius: 9999px`)
 - Police display : **Fredoka** (ronde, ludique) ; police texte : Work Sans (sobre, lisible en extérieur)
-- Décor jungle animé en fond (`JungleDecoration.tsx`) : feuilles/lianes colorées en coins d'écran + points scintillants (effet onirique), remplace la texture grain générique pour ce thème
-- Icônes/emoji jungle sur chaque écran (mini-jeux, indice, zone, équipes, victoire) pour la variété visuelle, sans texte narratif inventé
+- Décor jungle animé en fond, inspiré du style Douanier Rousseau (référence visuelle fournie) : palmes en éventail superposées (3 tons de vert) dans les 4 coins d'écran pointant vers le centre + grappes de fruits orangés + fond en dégradés colorés animés lentement ("psychedelic-bg", vert/jaune/rose/mangue) pour l'effet onirique, remplace la texture grain générique pour ce thème
+- Icônes/emoji uniquement végétaux/naturels (feuilles, fleurs, champignon, palmier, plante) sur chaque écran — **aucun emoji animal**, sans texte narratif inventé ni nom de mini-jeu affiché
 - Implémenté dans `src/lib/themes.ts` (id `jungle`), `src/components/ThemeProvider.tsx`, `src/components/JungleDecoration.tsx`
 
 Le système de thèmes reste multi-presets (no-code, choisi par chasse) : `bois-minimaliste`, `mystere`, `festif`, `jungle` existent tous dans `src/lib/themes.ts`, chacun avec ses propres `colors` (incluant `secondary`/`tertiary`), `radius`, `buttonRadius` et `decoration`. CF0 utilise `jungle`.
@@ -56,12 +56,14 @@ Inspiré du flux de l'ancien prototype `Toufik4991/GPS0`, adapté à CF0 :
 2. **Personnage** — selfie caméra, pixelisé en 32×32 (comme GPS0), affiché ensuite en avatar rond dans le menu et l'écran d'accueil. Si caméra refusée/indisponible : bouton "Continuer sans photo"
 3. **Choix de l'équipe** — le joueur choisit son équipe (mock : Équipe 1/2/3, chacune avec sa propre icône/couleur), stockée dans le profil local (`teamId`)
 4. **Choix du chemin** — 3 chemins proposés : Chemin 1, Chemin 2, Chemin 3. **Seul Chemin 1 est actif** ; Chemin 2 et 3 affichés désactivés ("bientôt")
-5. **Confirmation du parcours** — "Bienvenue [prénom]", nom du jeu (CF0), équipe rejointe, nombre d'étapes, bouton "C'est parti"
+5. **Confirmation du parcours** — "Bienvenue [prénom]", nom du jeu (CF0), équipe rejointe, nombre d'étapes. Si l'équipe a déjà de la progression (étape > 0), deux boutons sont proposés : **"Continuer (étape N)"** ou **"Recommencer depuis le début"** (remet étape/points/badges à zéro et redémarre le chrono). Sinon, un seul bouton "C'est parti".
 6. Entrée dans la boucle de jeu (§4)
 
-Le profil joueur (prénom + selfie) est sauvegardé en `localStorage` (`cf0_player_profile`). Un menu HUD (☰) est accessible en permanence pendant la partie : avatar + prénom, accès Classement, "Modifier mon profil" (efface le profil local et relance l'onboarding).
+Le profil joueur (prénom + selfie + équipe choisie) est sauvegardé en `localStorage` (`cf0_player_profile`). Un menu HUD (☰) est accessible en permanence pendant la partie : avatar + prénom, accès Classement, "Modifier mon profil" (efface le profil local et relance l'onboarding), et "🔑 Code maître".
 
-Implémenté dans `src/components/onboarding/` et `src/components/game/GameShell.tsx`.
+**Mode admin (code maître)** : accessible depuis le menu HUD, protégé par le code **`jules`** (insensible à la casse). Une fois débloqué : "Réinitialiser les points" (remet `pointsTotal` à 0) et "Passer toutes les étapes" (saute directement à l'écran de victoire). Cette action n'est pas encore loguée (le journal d'utilisation du code maître, prévu au cahier des charges, arrivera avec Supabase — Étape 5/9).
+
+Implémenté dans `src/components/onboarding/`, `src/components/game/GameShell.tsx` et `src/components/game/MasterCodeModal.tsx`.
 
 ## 6. Parcours / Chemins
 

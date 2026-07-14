@@ -11,8 +11,11 @@ export function RouteIntroScreen({
   hunt: Hunt;
   team: TeamProgress;
   player: PlayerProfile;
-  onStart: () => void;
+  onStart: (reset: boolean) => void;
 }) {
+  const hasProgress = team.currentStageIndex > 0;
+  const currentStep = Math.min(team.currentStageIndex + 1, hunt.stages.length);
+
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
       {player.selfieDataUrl ? (
@@ -35,7 +38,20 @@ export function RouteIntroScreen({
         <span className="font-bold text-[var(--color-foreground)]">{team.teamName}</span>.{" "}
         {hunt.stages.length}{" "}étapes t&apos;attendent.
       </p>
-      <Button onClick={onStart}>🚀 C&apos;est parti</Button>
+
+      {hasProgress ? (
+        <div className="flex flex-col items-center gap-3">
+          <p className="text-sm text-[var(--color-muted)]">
+            Cette équipe est déjà à l&apos;étape {currentStep}/{hunt.stages.length}.
+          </p>
+          <Button onClick={() => onStart(false)}>▶️ Continuer (étape {currentStep})</Button>
+          <Button variant="secondary" onClick={() => onStart(true)}>
+            🔄 Recommencer depuis le début
+          </Button>
+        </div>
+      ) : (
+        <Button onClick={() => onStart(false)}>🚀 C&apos;est parti</Button>
+      )}
     </section>
   );
 }

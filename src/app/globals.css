@@ -23,3 +23,37 @@ body {
 .glow-active {
   animation: glow-pulse 1.8s ease-in-out infinite;
 }
+
+@keyframes psychedelic-drift {
+  0%,
+  100% {
+    background-position:
+      15% 20%,
+      85% 80%,
+      50% 50%,
+      10% 90%;
+  }
+  50% {
+    background-position:
+      35% 40%,
+      65% 60%,
+      60% 35%,
+      30% 70%;
+  }
+}
+
+.psychedelic-bg {
+  background-image:
+    radial-gradient(circle, var(--color-tertiary) 0%, transparent 40%),
+    radial-gradient(circle, var(--color-secondary) 0%, transparent 40%),
+    radial-gradient(circle, var(--color-accent) 0%, transparent 45%),
+    radial-gradient(circle, var(--color-glow) 0%, transparent 35%);
+  background-repeat: no-repeat;
+  background-size:
+    75% 75%,
+    70% 70%,
+    85% 85%,
+    60% 60%;
+  opacity: 0.4;
+  animation: psychedelic-drift 18s ease-in-out infinite;
+}

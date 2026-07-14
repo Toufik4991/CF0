@@ -9,6 +9,7 @@ import { ClueScreen } from "@/components/game/ClueScreen";
 import { ZoneScreen } from "@/components/game/ZoneScreen";
 import { LeaderboardScreen } from "@/components/game/LeaderboardScreen";
 import { VictoryScreen } from "@/components/game/VictoryScreen";
+import { MasterCodeModal } from "@/components/game/MasterCodeModal";
 import { PseudoScreen } from "@/components/onboarding/PseudoScreen";
 import { SelfieScreen } from "@/components/onboarding/SelfieScreen";
 import { TeamSelectScreen } from "@/components/onboarding/TeamSelectScreen";
@@ -25,6 +26,7 @@ const MOCK_PLAYER: PlayerProfile = { pseudo: "Jules", selfieDataUrl: null, teamI
 export default function PreviewPage() {
   const [themeId, setThemeId] = useState<ThemeId>(MOCK_HUNT.themeId);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showMasterCode, setShowMasterCode] = useState(false);
   const theme = THEMES[themeId];
 
   return (
@@ -53,6 +55,7 @@ export default function PreviewPage() {
               player={MOCK_PLAYER}
               onOpenLeaderboard={() => {}}
               onEditProfile={() => {}}
+              onOpenMasterCode={() => setShowMasterCode(true)}
             />
           </ThemeProvider>
         </PreviewCard>
@@ -81,9 +84,15 @@ export default function PreviewPage() {
           </ThemeProvider>
         </PreviewCard>
 
-        <PreviewCard title="Onboarding — Confirmation du parcours">
+        <PreviewCard title="Onboarding — Confirmation du parcours (nouvelle équipe)">
           <ThemeProvider theme={theme}>
             <RouteIntroScreen hunt={MOCK_HUNT} team={MOCK_TEAM} player={MOCK_PLAYER} onStart={() => {}} />
+          </ThemeProvider>
+        </PreviewCard>
+
+        <PreviewCard title="Onboarding — Confirmation (équipe avec progression)">
+          <ThemeProvider theme={theme}>
+            <RouteIntroScreen hunt={MOCK_HUNT} team={MOCK_TEAMS[1]} player={MOCK_PLAYER} onStart={() => {}} />
           </ThemeProvider>
         </PreviewCard>
 
@@ -121,12 +130,18 @@ export default function PreviewPage() {
         </PreviewCard>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 flex gap-3">
         <button
           onClick={() => setShowLeaderboard(true)}
           className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black"
         >
           Prévisualiser le classement
+        </button>
+        <button
+          onClick={() => setShowMasterCode(true)}
+          className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black"
+        >
+          Prévisualiser le mode admin (code : jules)
         </button>
       </div>
 
@@ -136,6 +151,16 @@ export default function PreviewPage() {
             entries={MOCK_LEADERBOARD}
             currentTeamId={MOCK_TEAM.teamId}
             onClose={() => setShowLeaderboard(false)}
+          />
+        </ThemeProvider>
+      )}
+
+      {showMasterCode && (
+        <ThemeProvider theme={theme}>
+          <MasterCodeModal
+            onClose={() => setShowMasterCode(false)}
+            onResetPoints={() => {}}
+            onSkipAllStages={() => {}}
           />
         </ThemeProvider>
       )}
