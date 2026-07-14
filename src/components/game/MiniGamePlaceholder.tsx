@@ -4,15 +4,6 @@ import { useState } from "react";
 import type { Stage } from "@/types/hunt";
 import { Button } from "@/components/ui/Button";
 
-const MINI_GAME_LABELS: Record<Stage["miniGameType"], string> = {
-  quiz: "Quiz",
-  memory: "Memory",
-  puzzle: "Puzzle glissant",
-  cipher: "Décryptage",
-  reflex: "Réflexe",
-  association: "Association",
-};
-
 const MINI_GAME_ICONS: Record<Stage["miniGameType"], string> = {
   quiz: "🦜",
   memory: "🐒",
@@ -34,27 +25,19 @@ export function MiniGamePlaceholder({
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
       <span className="text-5xl">{MINI_GAME_ICONS[stage.miniGameType]}</span>
-      <div>
-        <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
-          {MINI_GAME_LABELS[stage.miniGameType]}
-        </p>
-        <h2 className="font-[var(--font-display)] text-2xl font-bold">{stage.title}</h2>
-      </div>
+      <h2 className="font-[var(--font-display)] text-2xl font-bold">{stage.title}</h2>
 
       {!solved ? (
         <>
           <div className="w-full max-w-sm rounded-[var(--radius-theme)] border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-md">
-            <p className="text-sm text-[var(--color-muted)]">
-              Mini-jeu « {MINI_GAME_LABELS[stage.miniGameType]} » — composant à brancher en Brique 2.
-            </p>
+            <p className="text-sm text-[var(--color-muted)]">Mini-jeu à brancher en Brique 2.</p>
           </div>
           <Button onClick={() => setSolved(true)}>Simuler la réussite</Button>
         </>
       ) : (
         <>
           <div className="w-full max-w-sm rounded-[var(--radius-theme)] border-2 border-[var(--color-success)] bg-[var(--color-surface)] p-6 shadow-md">
-            <p className="text-sm font-bold text-[var(--color-success)]">🎉 Bravo, mini-jeu réussi !</p>
-            <p className="mt-2 text-3xl font-black tracking-[0.3em] text-[var(--color-primary)]">
+            <p className="text-3xl font-black tracking-[0.3em] text-[var(--color-primary)]">
               {stage.code}
             </p>
             <p className="mt-2 text-xs text-[var(--color-muted)]">Retenez ce code pour l&apos;étape suivante.</p>
