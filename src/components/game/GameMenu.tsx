@@ -19,7 +19,7 @@ export function GameMenu({
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Menu"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-background)] text-lg"
+        className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-primary)] text-lg text-[var(--color-primary-foreground)] shadow-md transition-transform active:scale-90"
       >
         ☰
       </button>
@@ -30,29 +30,29 @@ export function GameMenu({
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-30 cursor-default"
           />
-          <div className="absolute right-0 top-12 z-40 w-56 rounded-[var(--radius-theme)] border border-[var(--color-border)] bg-[var(--color-background)] p-2 shadow-lg">
-            <div className="flex items-center gap-3 border-b border-[var(--color-border)] px-2 pb-2">
+          <div className="absolute right-0 top-14 z-40 w-56 rounded-[1.5rem] border-2 border-[var(--color-border)] bg-[var(--color-background)] p-3 shadow-xl">
+            <div className="flex items-center gap-3 border-b-2 border-[var(--color-border)] px-2 pb-3">
               {player.selfieDataUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={player.selfieDataUrl}
                   alt=""
                   style={{ imageRendering: "pixelated" }}
-                  className="h-9 w-9 rounded-full object-cover"
+                  className="h-10 w-10 rounded-full border-2 border-[var(--color-primary)] object-cover"
                 />
               ) : (
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface)] text-sm font-semibold">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-secondary)] text-sm font-bold">
                   {player.pseudo.charAt(0).toUpperCase()}
                 </span>
               )}
-              <span className="text-sm font-medium">{player.pseudo}</span>
+              <span className="text-sm font-bold">{player.pseudo}</span>
             </div>
             <button
               onClick={() => {
                 setOpen(false);
                 onOpenLeaderboard();
               }}
-              className="mt-1 block w-full rounded-[var(--radius-theme)] px-2 py-2 text-left text-sm hover:bg-[var(--color-surface)]"
+              className="mt-2 block w-full rounded-full px-3 py-2.5 text-left text-sm font-semibold hover:bg-[var(--color-surface)]"
             >
               🏆 Classement
             </button>
@@ -61,7 +61,7 @@ export function GameMenu({
                 setOpen(false);
                 onEditProfile();
               }}
-              className="block w-full rounded-[var(--radius-theme)] px-2 py-2 text-left text-sm hover:bg-[var(--color-surface)]"
+              className="block w-full rounded-full px-3 py-2.5 text-left text-sm font-semibold hover:bg-[var(--color-surface)]"
             >
               🙋 Modifier mon profil
             </button>

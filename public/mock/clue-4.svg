@@ -1,10 +1,16 @@
 <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
-  <rect width="480" height="320" fill="#EADFC7"/>
-  <rect x="0" y="0" width="480" height="320" fill="none" stroke="#D8C9AC" stroke-width="6"/>
-  <g transform="translate(240,160)" fill="none" stroke="#2E2A26" stroke-width="8" stroke-linecap="round">
-    <path d="M-14,60 L-24,-60 L24,-60 L14,60 Z" fill="#B5502D" stroke="none"/>
-    <path d="M-30,-60 L30,-60"/>
-    <path d="M-14,-60 L-14,-90 L14,-90 L14,-60"/>
+  <rect width="480" height="320" rx="32" fill="#F3FBD8"/>
+  <rect x="4" y="4" width="472" height="312" rx="28" fill="none" stroke="#FFC93C" stroke-width="6"/>
+  <g transform="translate(240,140)">
+    <g fill="#FFC93C">
+      <circle cx="0" cy="-38" r="22"/>
+      <circle cx="36" cy="-19" r="22"/>
+      <circle cx="36" cy="19" r="22"/>
+      <circle cx="0" cy="38" r="22"/>
+      <circle cx="-36" cy="19" r="22"/>
+      <circle cx="-36" cy="-19" r="22"/>
+    </g>
+    <circle cx="0" cy="0" r="20" fill="#FF6F91"/>
   </g>
-  <text x="240" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#7A6F5D">Indice — Étape 4</text>
+  <text x="240" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="bold" fill="#1A3A22">Indice — Étape 4</text>
 </svg>

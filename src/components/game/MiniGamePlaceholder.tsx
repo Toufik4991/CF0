@@ -13,6 +13,15 @@ const MINI_GAME_LABELS: Record<Stage["miniGameType"], string> = {
   association: "Association",
 };
 
+const MINI_GAME_ICONS: Record<Stage["miniGameType"], string> = {
+  quiz: "🦜",
+  memory: "🐒",
+  puzzle: "🍃",
+  cipher: "🦋",
+  reflex: "🐸",
+  association: "🌺",
+};
+
 export function MiniGamePlaceholder({
   stage,
   onCodeRevealed,
@@ -24,14 +33,17 @@ export function MiniGamePlaceholder({
 
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <p className="text-xs uppercase tracking-widest text-[var(--color-muted)]">
-        {MINI_GAME_LABELS[stage.miniGameType]}
-      </p>
-      <h2 className="font-[var(--font-display)] text-2xl font-semibold">{stage.title}</h2>
+      <span className="text-5xl">{MINI_GAME_ICONS[stage.miniGameType]}</span>
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
+          {MINI_GAME_LABELS[stage.miniGameType]}
+        </p>
+        <h2 className="font-[var(--font-display)] text-2xl font-bold">{stage.title}</h2>
+      </div>
 
       {!solved ? (
         <>
-          <div className="w-full max-w-sm rounded-[var(--radius-theme)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+          <div className="w-full max-w-sm rounded-[var(--radius-theme)] border-2 border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-md">
             <p className="text-sm text-[var(--color-muted)]">
               Mini-jeu « {MINI_GAME_LABELS[stage.miniGameType]} » — composant à brancher en Brique 2.
             </p>
@@ -40,9 +52,11 @@ export function MiniGamePlaceholder({
         </>
       ) : (
         <>
-          <div className="w-full max-w-sm rounded-[var(--radius-theme)] border border-[var(--color-success)] bg-[var(--color-surface)] p-6">
-            <p className="text-sm font-medium text-[var(--color-success)]">Bravo, mini-jeu réussi !</p>
-            <p className="mt-2 text-3xl font-bold tracking-[0.3em]">{stage.code}</p>
+          <div className="w-full max-w-sm rounded-[var(--radius-theme)] border-2 border-[var(--color-success)] bg-[var(--color-surface)] p-6 shadow-md">
+            <p className="text-sm font-bold text-[var(--color-success)]">🎉 Bravo, mini-jeu réussi !</p>
+            <p className="mt-2 text-3xl font-black tracking-[0.3em] text-[var(--color-primary)]">
+              {stage.code}
+            </p>
             <p className="mt-2 text-xs text-[var(--color-muted)]">Retenez ce code pour l&apos;étape suivante.</p>
           </div>
           <Button onClick={onCodeRevealed}>Saisir le code</Button>

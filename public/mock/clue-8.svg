@@ -1,0 +1,11 @@
+<svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="320" rx="32" fill="#F3FBD8"/>
+  <rect x="4" y="4" width="472" height="312" rx="28" fill="none" stroke="#FF7A45" stroke-width="6"/>
+  <g transform="translate(240,140)">
+    <ellipse cx="10" cy="0" rx="45" ry="38" fill="#1A3A22"/>
+    <path d="M50,0 C90,-10 95,10 50,15 Z" fill="#FFC93C"/>
+    <circle cx="-5" cy="-15" r="7" fill="#F3FBD8"/>
+    <path d="M-30,20 C-40,50 -20,60 0,45" fill="none" stroke="#FF7A45" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text x="240" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="bold" fill="#1A3A22">Indice — Étape 8</text>
+</svg>

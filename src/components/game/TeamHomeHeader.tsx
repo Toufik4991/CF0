@@ -19,13 +19,18 @@ export function TeamHomeHeader({
   const current = Math.min(team.currentStageIndex + 1, total);
 
   return (
-    <header className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)]/60 px-5 py-4">
-      <div>
-        <p className="text-xs uppercase tracking-widest text-[var(--color-muted)]">{hunt.name}</p>
-        <h1 className="font-[var(--font-display)] text-xl font-semibold">{team.teamName}</h1>
+    <header className="flex items-center justify-between rounded-b-[2rem] border-b-2 border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4 shadow-sm">
+      <div className="flex items-center gap-2">
+        <span className="text-2xl">🌿</span>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-muted)]">
+            {hunt.name}
+          </p>
+          <h1 className="font-[var(--font-display)] text-xl font-bold">{team.teamName}</h1>
+        </div>
       </div>
       <div className="flex items-center gap-3">
-        <span className="rounded-full border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1 text-sm font-medium">
+        <span className="rounded-full bg-[var(--color-secondary)] px-4 py-1.5 text-sm font-bold text-[var(--color-foreground)] shadow-sm">
           Étape {current}/{total}
         </span>
         <GameMenu player={player} onOpenLeaderboard={onOpenLeaderboard} onEditProfile={onEditProfile} />

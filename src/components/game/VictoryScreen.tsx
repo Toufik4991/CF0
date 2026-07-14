@@ -9,29 +9,38 @@ export function VictoryScreen({
 }) {
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <p className="text-xs uppercase tracking-widest text-[var(--color-muted)]">Chasse terminée</p>
-      <h2 className="font-[var(--font-display)] text-3xl font-semibold">Bravo, {team.teamName} !</h2>
-      <div className="flex gap-6 text-sm text-[var(--color-muted)]">
-        <div>
-          <p className="text-2xl font-semibold text-[var(--color-foreground)]">{elapsedLabel}</p>
-          <p>Temps total</p>
+      <span className="text-6xl">🌴🎉</span>
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
+          Chasse terminée
+        </p>
+        <h2 className="font-[var(--font-display)] text-3xl font-bold">Bravo, {team.teamName} !</h2>
+      </div>
+      <div className="flex gap-4">
+        <div className="rounded-[1.5rem] bg-[var(--color-surface)] px-6 py-4 shadow-md">
+          <p className="text-2xl font-black text-[var(--color-primary)]">{elapsedLabel}</p>
+          <p className="text-xs font-semibold text-[var(--color-muted)]">Temps total</p>
         </div>
-        <div>
-          <p className="text-2xl font-semibold text-[var(--color-foreground)]">{team.pointsTotal}</p>
-          <p>Points</p>
+        <div className="rounded-[1.5rem] bg-[var(--color-surface)] px-6 py-4 shadow-md">
+          <p className="text-2xl font-black text-[var(--color-accent)]">{team.pointsTotal}</p>
+          <p className="text-xs font-semibold text-[var(--color-muted)]">Points</p>
         </div>
       </div>
       {team.badges.length > 0 && (
         <div className="flex flex-col items-center gap-2">
-          <p className="text-sm font-medium">Badges débloqués</p>
+          <p className="text-sm font-bold">Badges débloqués</p>
           <div className="flex gap-3">
-            {team.badges.map((badge) => (
+            {team.badges.map((badge, i) => (
               <div
                 key={badge.id}
-                className="flex flex-col items-center gap-1 rounded-[var(--radius-theme)] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3"
+                className="flex flex-col items-center gap-1 rounded-[1.5rem] border-2 px-4 py-3 shadow-sm"
+                style={{
+                  borderColor: i % 2 === 0 ? "var(--color-secondary)" : "var(--color-tertiary)",
+                  backgroundColor: "var(--color-surface)",
+                }}
               >
                 <span className="text-2xl">{badge.icon}</span>
-                <span className="text-xs font-medium">{badge.name}</span>
+                <span className="text-xs font-bold">{badge.name}</span>
               </div>
             ))}
           </div>

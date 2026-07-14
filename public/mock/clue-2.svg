@@ -1,10 +1,12 @@
 <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
-  <rect width="480" height="320" fill="#EADFC7"/>
-  <rect x="0" y="0" width="480" height="320" fill="none" stroke="#D8C9AC" stroke-width="6"/>
-  <g transform="translate(240,150)" fill="none" stroke="#2E2A26" stroke-width="8" stroke-linecap="round">
-    <path d="M-90,40 L90,40"/>
-    <path d="M-70,40 L-70,-10 L70,-10 L70,40"/>
-    <path d="M-70,-10 L0,-50 L70,-10"/>
+  <rect width="480" height="320" rx="32" fill="#F3FBD8"/>
+  <rect x="4" y="4" width="472" height="312" rx="28" fill="none" stroke="#FF7A45" stroke-width="6"/>
+  <g transform="translate(240,140)" fill="#FF7A45">
+    <ellipse cx="0" cy="20" rx="55" ry="45"/>
+    <circle cx="-45" cy="-40" r="18"/>
+    <circle cx="-15" cy="-58" r="18"/>
+    <circle cx="15" cy="-58" r="18"/>
+    <circle cx="45" cy="-40" r="18"/>
   </g>
-  <text x="240" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#7A6F5D">Indice — Étape 2</text>
+  <text x="240" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="26" font-weight="bold" fill="#1A3A22">Indice — Étape 2</text>
 </svg>

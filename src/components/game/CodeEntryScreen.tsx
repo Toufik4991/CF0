@@ -16,7 +16,7 @@ export function CodeEntryScreen({
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (value.trim() === stage.code) {
+    if (value.trim().toUpperCase() === stage.code.toUpperCase()) {
       setError(false);
       onCorrect();
     } else {
@@ -26,7 +26,8 @@ export function CodeEntryScreen({
 
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <h2 className="font-[var(--font-display)] text-2xl font-semibold">Entrer le code</h2>
+      <span className="text-5xl">🔐</span>
+      <h2 className="font-[var(--font-display)] text-2xl font-bold">Entrer le code</h2>
       <p className="max-w-xs text-sm text-[var(--color-muted)]">
         Saisissez le code de déverrouillage obtenu pour révéler l&apos;indice.
       </p>
@@ -37,9 +38,9 @@ export function CodeEntryScreen({
             setValue(e.target.value);
             setError(false);
           }}
-          inputMode="numeric"
+          autoCapitalize="characters"
           autoFocus
-          className={`w-full rounded-[var(--radius-theme)] border-2 bg-[var(--color-background)] px-4 py-3 text-center text-2xl tracking-[0.4em] outline-none ${
+          className={`w-full rounded-[var(--button-radius)] border-2 bg-[var(--color-background)] px-4 py-3.5 text-center text-2xl font-bold uppercase tracking-[0.4em] outline-none shadow-inner ${
             error
               ? "border-[var(--color-danger)]"
               : "border-[var(--color-border)] focus:border-[var(--color-primary)]"
@@ -47,7 +48,7 @@ export function CodeEntryScreen({
           placeholder="----"
         />
         {error && (
-          <p className="text-sm font-medium text-[var(--color-danger)]">Code incorrect, réessayez.</p>
+          <p className="text-sm font-bold text-[var(--color-danger)]">Code incorrect, réessayez.</p>
         )}
         <Button type="submit" className="w-full">
           Valider

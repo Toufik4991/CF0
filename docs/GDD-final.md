@@ -22,14 +22,16 @@ Ce document est la référence unique du projet. Toute demande de changement doi
 
 ## 3. Thème visuel actif
 
-**Jungle / Enfance** (onirisme) — thème actif de CF0, remplace le "Bois / Minimaliste" du cahier des charges initial (changement demandé explicitement).
+**Jungle / Enfance** (onirisme) — thème actif de CF0, remplace le "Bois / Minimaliste" du cahier des charges initial (changement demandé explicitement). Révisé en cours de route pour être plus rond, plus coloré et plus "travaillé" (retour utilisateur : l'interface manquait de vie).
 
-- Palette : vert feuillage `#3F9142`, fond mousse clair `#EAF4E1`, accent corail `#FF8A5B`, glow doré `#FFD166`, texte anthracite-vert `#1F3A2E`
-- Coins très arrondis (1.5rem) pour un rendu enfantin
+- Palette vive : vert feuillage `#219150`, fond citron vert clair `#F3FBD8`, jaune soleil (secondaire) `#FFC93C`, rose/baie (tertiaire) `#FF6F91`, accent mangue `#FF7A45`, glow doré `#FFD23F`, texte anthracite-vert `#1A3A22`
+- Coins très arrondis (radius carte 2rem, boutons en pilule via `buttonRadius: 9999px`)
 - Police display : **Fredoka** (ronde, ludique) ; police texte : Work Sans (sobre, lisible en extérieur)
-- Implémenté dans `src/lib/themes.ts` (id `jungle`)
+- Décor jungle animé en fond (`JungleDecoration.tsx`) : feuilles/lianes colorées en coins d'écran + points scintillants (effet onirique), remplace la texture grain générique pour ce thème
+- Icônes/emoji jungle sur chaque écran (mini-jeux, indice, zone, équipes, victoire) pour la variété visuelle, sans texte narratif inventé
+- Implémenté dans `src/lib/themes.ts` (id `jungle`), `src/components/ThemeProvider.tsx`, `src/components/JungleDecoration.tsx`
 
-Le système de thèmes reste multi-presets (no-code, choisi par chasse) : `bois-minimaliste`, `mystere`, `festif`, `jungle` existent tous dans `src/lib/themes.ts`. CF0 utilise `jungle`.
+Le système de thèmes reste multi-presets (no-code, choisi par chasse) : `bois-minimaliste`, `mystere`, `festif`, `jungle` existent tous dans `src/lib/themes.ts`, chacun avec ses propres `colors` (incluant `secondary`/`tertiary`), `radius`, `buttonRadius` et `decoration`. CF0 utilise `jungle`.
 
 ## 4. Boucle de jeu
 
@@ -52,9 +54,10 @@ Inspiré du flux de l'ancien prototype `Toufik4991/GPS0`, adapté à CF0 :
 
 1. **Prénom** — saisie libre, stockée en local (par appareil, pas par équipe)
 2. **Personnage** — selfie caméra, pixelisé en 32×32 (comme GPS0), affiché ensuite en avatar rond dans le menu et l'écran d'accueil. Si caméra refusée/indisponible : bouton "Continuer sans photo"
-3. **Choix du chemin** — 3 chemins proposés : Chemin 1, Chemin 2, Chemin 3. **Seul Chemin 1 est actif** ; Chemin 2 et 3 affichés désactivés ("bientôt")
-4. **Confirmation du parcours** — "Bienvenue [prénom]", nom du jeu (CF0), équipe rejointe, nombre d'étapes, bouton "C'est parti"
-5. Entrée dans la boucle de jeu (§4)
+3. **Choix de l'équipe** — le joueur choisit son équipe (mock : Équipe 1/2/3, chacune avec sa propre icône/couleur), stockée dans le profil local (`teamId`)
+4. **Choix du chemin** — 3 chemins proposés : Chemin 1, Chemin 2, Chemin 3. **Seul Chemin 1 est actif** ; Chemin 2 et 3 affichés désactivés ("bientôt")
+5. **Confirmation du parcours** — "Bienvenue [prénom]", nom du jeu (CF0), équipe rejointe, nombre d'étapes, bouton "C'est parti"
+6. Entrée dans la boucle de jeu (§4)
 
 Le profil joueur (prénom + selfie) est sauvegardé en `localStorage` (`cf0_player_profile`). Un menu HUD (☰) est accessible en permanence pendant la partie : avatar + prénom, accès Classement, "Modifier mon profil" (efface le profil local et relance l'onboarding).
 
@@ -65,7 +68,7 @@ Implémenté dans `src/components/onboarding/` et `src/components/game/GameShell
 - 3 chemins prévus au total dans l'interface joueur.
 - **Chemin 1** : seul chemin avec du contenu, correspond aux 9 étapes réelles listées en §7.
 - Chemin 2 et 3 : verrouillés dans l'UI, aucun contenu pour l'instant.
-- En développement (mock), le jeu utilise actuellement 4 étapes factices (`src/lib/mock-data.ts`) le temps de valider l'UI ; le passage aux 9 vraies étapes de Chemin 1 se fera à l'Étape 7 de la feuille de route (§13), avec les vraies coordonnées GPS.
+- Le mock de développement (`src/lib/mock-data.ts`) utilise directement les 9 vraies coordonnées GPS et codes de déverrouillage du Chemin 1 (§7) — plus de données factices à 4 étapes. Le mini-jeu assigné à chaque étape reste un placeholder générique (rotation des 6 types) en attendant l'Étape 3 (premier mini-jeu réel) ; le rayon de zone (50 m) est une valeur par défaut le temps que l'admin l'ajuste par étape.
 
 ## 7. Contenu réel — Chemin 1 (9 étapes)
 

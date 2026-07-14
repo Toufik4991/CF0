@@ -10,6 +10,8 @@ export interface ThemePreset {
     muted: string;
     primary: string;
     primaryForeground: string;
+    secondary: string;
+    tertiary: string;
     accent: string;
     glow: string;
     border: string;
@@ -21,5 +23,7 @@ export interface ThemePreset {
     display: string;
   };
   radius: string;
+  buttonRadius: string;
   textureOpacity: number;
+  decoration: "grain" | "jungle";
 }

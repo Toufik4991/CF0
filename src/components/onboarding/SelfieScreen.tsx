@@ -57,10 +57,15 @@ export function SelfieScreen({
 
   return (
     <section className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-      <p className="text-xs uppercase tracking-widest text-[var(--color-muted)]">Ton personnage</p>
-      <h2 className="font-[var(--font-display)] text-2xl font-semibold">Prends-toi en photo</h2>
+      <span className="text-5xl">🐒</span>
+      <div>
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
+          Ton personnage
+        </p>
+        <h2 className="font-[var(--font-display)] text-2xl font-bold">Prends-toi en photo</h2>
+      </div>
 
-      <div className="flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border-4 border-[var(--color-primary)] bg-[var(--color-surface)]">
+      <div className="flex h-56 w-56 items-center justify-center overflow-hidden rounded-full border-[6px] border-[var(--color-primary)] bg-[var(--color-surface)] shadow-[0_0_0_6px_var(--color-secondary),0_0_0_12px_var(--color-tertiary)]">
         {captured ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
