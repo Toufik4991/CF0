@@ -1,0 +1,17 @@
+{
+  "name": "Chasse au Trésor",
+  "short_name": "Chasse",
+  "description": "Chasse au trésor géolocalisée en équipe",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4EBDC",
+  "theme_color": "#C98A2C",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

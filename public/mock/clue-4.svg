@@ -1,0 +1,10 @@
+<svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="320" fill="#EADFC7"/>
+  <rect x="0" y="0" width="480" height="320" fill="none" stroke="#D8C9AC" stroke-width="6"/>
+  <g transform="translate(240,160)" fill="none" stroke="#2E2A26" stroke-width="8" stroke-linecap="round">
+    <path d="M-14,60 L-24,-60 L24,-60 L14,60 Z" fill="#B5502D" stroke="none"/>
+    <path d="M-30,-60 L30,-60"/>
+    <path d="M-14,-60 L-14,-90 L14,-90 L14,-60"/>
+  </g>
+  <text x="240" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#7A6F5D">Indice — La cloche de la criée</text>
+</svg>
